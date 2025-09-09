@@ -1,0 +1,11 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://www.rule1120.com https://rule1120.com https://*.squarespace.com" }
+      ]
+    }
+  ]
+}
