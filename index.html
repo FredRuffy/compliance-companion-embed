@@ -20,5 +20,51 @@
     .btn { border:0; border-radius:10px; padding:10px 14px; font-weight:600; background:#1f2937; color:#fff; cursor:pointer; }
     .btn:disabled { opacity:.6; cursor:not-allowed; }
     .fine { font-size:12px; color:#6b7280; padding:6px 12px; }
-  </st
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      Compliance Companion
+      <span class="log" id="status">mock mode</span>
+    </div>
 
+    <div class="chat" id="chat">
+      <div class="msg bot">Hi! Ask me about Rule 2210, disclosures, or exam tips.</div>
+    </div>
+
+    <form class="inputbar" id="form">
+      <input class="field" id="input" placeholder="Type a message…" autocomplete="off" />
+      <button class="btn" id="send">Send</button>
+    </form>
+  </div>
+
+  <div class="fine">This is a placeholder UI. Next we’ll connect it to an API route.</div>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+
+    function append(text, role){
+      const div = document.createElement('div');
+      div.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = (input.value || '').trim();
+      if(!text) return;
+      append(text, 'user');
+      input.value = '';
+      // mock reply
+      setTimeout(() => {
+        append('Mock: I’ll answer that once we connect the backend.', 'bot');
+      }, 400);
+    });
+  </script>
+</body>
+</html>
